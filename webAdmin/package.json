@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress  --open --env.Development=true",
-    "build": "webpack --progress --env.Development=false",
+    "start": "webpack-dev-server --progress  --open",
+    "build": "webpack --progress --env.Generative=true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -33,6 +33,7 @@
     "style-loader": "^0.18.2",
     "typescript": "^2.4.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.5.4"
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.7.1"
   }
 }
