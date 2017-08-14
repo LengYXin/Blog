@@ -1,14 +1,13 @@
 const webpack = require('webpack');
 module.exports = function () {
     const path = __dirname;
-    console.log("------------------------------------执行 Node 打包 path=" + path);
     return {
         entry: {
-            app: './src/api/server.ts',
+            app: './src/server.ts',
         },
         target: 'node',
         output: {
-            path: path + '/build/server/',
+            path: path + '/build/',
             filename: 'server.js'
         },
         resolve: {
@@ -37,7 +36,7 @@ module.exports = function () {
         module: {
             loaders: [{
                 test: /\.ts$/,
-                loader: 'ts-loader'
+                loader: 'awesome-typescript-loader'
             }]
         },
         plugins: [

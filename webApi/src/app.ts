@@ -108,9 +108,9 @@ export default class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
         // app.use(cookieParser());
-        this.app.use(express.static(path.join(path.dirname(__dirname), 'public')));
-        this.app.use("img", express.static(path.join(path.dirname(__dirname), 'public', 'images')));
-        this.app.use(express.static(path.join(path.dirname(__dirname), 'react')));
+        // this.app.use(express.static(path.join(path.dirname(__dirname), 'public')));
+        // this.app.use("img", express.static(path.join(path.dirname(__dirname), 'public', 'images')));
+        // this.app.use(express.static(path.join(path.dirname(__dirname), 'react')));
 
         this.app.use((req, res, next) => {
             // After successful login, redirect back to the intended page
