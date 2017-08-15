@@ -8,7 +8,7 @@
     "start:admin":"cd webAdmin && npm start",
     "start:api":"cd webApi && npm start",
     "init-dev": "npm run init-dev-g && npm run init-api && npm run init-admin",
-    "init-dev-g": "npm i -g -d webpack concurrently TypeScript nodemon",
+    "init-dev-g": "npm i -g -d webpack webpack-dev-server concurrently TypeScript nodemon",
     "init-api": "cd webApi && npm i -d",
     "init-admin": "cd webAdmin && npm i -d",
     "test": ""
