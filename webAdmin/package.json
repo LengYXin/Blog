@@ -6,8 +6,6 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --progress --env.Generative=true",
-    "init-dev-g": "npm i -g -d webpack webpack-dev-server concurrently TypeScript nodemon",
-    "init-dev": "npm run init-dev-g && npm i -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
