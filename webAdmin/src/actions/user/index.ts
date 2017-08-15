@@ -15,7 +15,7 @@ export function getUser() {
     return (dispatch, getState) => {
         // 模拟加载慢
         setTimeout(function () {
-            jquery.get("/api/user").then(x => {
+            jquery.get("/api/user/userContext").then(x => {
                 dispatch({ type: GET_USER, data: x.data })
             });
         }, 1500);
@@ -25,6 +25,7 @@ export function getUser() {
 export function login(uid, pwd, Callback?) {
     return (dispatch, getState) => {
         setTimeout(function () {
+            console.log("jquery",jquery);
             jquery.post("/api/login", { uid, pwd }).then(x => {
                 Callback ? Callback() : undefined;
                 dispatch({ type: LOGIN, data: x.data })

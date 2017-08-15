@@ -8,7 +8,6 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as routes from './routes';
 // error TS2688: Cannot find type definition file for 'localforage'.  运行 npm i --save-dev -d @types/localforage
-// console.log("config-------------------", AppConfig);
 export default class App {
     constructor(PORT?) {
         this.app = express();
@@ -59,8 +58,8 @@ export default class App {
             getPaht(x.Url, x.Router, routestest);
             routestest.push("");
         });
-        routestest.push(`-----------------静态-----------------`);
-        routestest.push("/react.html");
+        // routestest.push(`-----------------静态-----------------`);
+        // routestest.push("/react.html");
         this.app.get("/", (req, res) => {
             res.render("index", {
                 title: "路由列表",

@@ -13,9 +13,9 @@ module.exports = (evn = {}) => {
     let plugins = [
         //全局变量
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            Tether: 'tether'
+            // $: 'jquery',
+            // jQuery: 'jquery',
+            // Tether: 'tether'
             // plupload: "plupload"
         }),
         // new ExtractTextPlugin('styles.css'), //生成对应的css文件
@@ -35,7 +35,7 @@ module.exports = (evn = {}) => {
         }]),
     ];
     // 生产环境添加压缩插件
-    evn.Generative ? undefined : plugins.push(new UglifyJSPlugin({
+    evn.Generative ? plugins.push(new UglifyJSPlugin({
         warning: false,
         mangle: true,
         compress: {
@@ -43,7 +43,7 @@ module.exports = (evn = {}) => {
             drop_debugger: true,
             drop_console: true
         }
-    }));
+    })) : undefined;
     return {
         entry: {
             'vendor': './src/vendor.ts', //第三方依赖
@@ -59,10 +59,16 @@ module.exports = (evn = {}) => {
         devServer: {
             // contentBase: "www", //本地服务器所加载的页面所在的目录
             inline: true, //检测文件变化，实时构建并刷新浏览器
-            port: "8012",
+            port: "4002",
             // https: true,
             proxy: {
-
+                '/api': {
+                    target: 'http://localhost:4001',
+                    pathRewrite: {
+                        "^/api": ""
+                    },
+                    secure: false
+                },
             },
             //404 页面返回 index.html 
             historyApiFallback: true,
@@ -70,8 +76,8 @@ module.exports = (evn = {}) => {
                 // data(app);
             }
         },
-        // 生成环境 生成 map 文件  
-        devtool: evn.Generative ? 'source-map' : 'nosources-source-map',
+        // 开发环境 生成 map 文件  
+        devtool: evn.Generative ? 'nosources-source-map' : 'source-map',
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".json"]
         },

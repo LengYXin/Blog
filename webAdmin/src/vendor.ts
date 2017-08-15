@@ -10,15 +10,15 @@ import 'redux-thunk'
 import 'react'
 import 'react-dom'
 import 'react-redux'
-import 'react-router'
+// import 'react-router'
 import 'react-router-dom'
 import 'react-router-config'
-import 'history'
+// import 'history'
 /*-----------ui------------*/
 import 'antd'
 // import '../node_modules/antd/dist/antd.css' 这个 css 放到了 index.tsx 中引入 webpack 独立css 现在好像没有支持多入口css合并
 /*---------杂七杂八的---------*/
-import "jquery"
+// import "jquery"
 // import "tether"
 // import 'bootstrap'
 // import '../assets/bootstrap/scss/bootstrap.scss'

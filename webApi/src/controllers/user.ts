@@ -13,10 +13,14 @@ RouterUse.get("/", (req: Request, res: Response) => {
     routers: routers
   });
 });
-RouterUse.use("/userList/:id?", users.RouterUse);
-RouterUse.use("/userList/a", users.RouterUse);
-RouterUse.use("/userList", users.RouterUse);
-
+// RouterUse.use("/userList/:id?", users.RouterUse);
+// RouterUse.use("/userList/a", users.RouterUse);
+// RouterUse.use("/userList", users.RouterUse);
+RouterUse.get("/userContext", (req: Request, res: Response) => {
+  res.json({
+    Name: "LENG",
+  });
+});
 RouterUse.get("/index/:id", (req: Request, res: Response) => {
   res.json({
     title: "Express User"

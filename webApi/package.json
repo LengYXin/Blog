@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run watch",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\"  \"npm run watch-ts\" \"nodemon build/server.js\"",
+    "watch-ts": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

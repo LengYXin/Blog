@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,26 +76,8 @@ module.exports = require("express");
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __webpack_require__(0);
-exports.RouterUse = express_1.Router();
-// 路由列表
-let routers = [];
-exports.RouterUse.get("/", (req, res) => {
-    routers = exports.RouterUse.stack.map(x => {
-        return (x.route ? req.baseUrl + x.route.path : '这是一个中间件');
-    });
-    res.render("index", {
-        title: "路由列表 ----- " + req.baseUrl,
-        routers: routers
-    });
-});
-exports.RouterUse.get("/index", (req, res) => {
-    res.send('respond with a resource');
-});
-exports.RouterUse.get("/error", (req, res) => {
-    let err = parseInt('a111a');
-    throw "报错了";
-});
+const app_1 = __webpack_require__(2);
+app_1.default.bootstrap();
 
 
 /***/ }),
@@ -105,28 +87,16 @@ exports.RouterUse.get("/error", (req, res) => {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __webpack_require__(3);
-app_1.default.bootstrap();
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
 // /// <reference path="../../typings/typings.d.ts" />
 // import * as AppConfig from "../../AppConfig.json";
 const express = __webpack_require__(0);
-const path = __webpack_require__(4);
+const path = __webpack_require__(3);
 // import * as favicon  from 'serve-favicon';
-const logger = __webpack_require__(5);
+const logger = __webpack_require__(4);
 // import * as cookieParser  from 'cookie-parser';
-const bodyParser = __webpack_require__(6);
-const routes = __webpack_require__(7);
+const bodyParser = __webpack_require__(5);
+const routes = __webpack_require__(6);
 // error TS2688: Cannot find type definition file for 'localforage'.  运行 npm i --save-dev -d @types/localforage
-// console.log("config-------------------", AppConfig);
 class App {
     constructor(PORT) {
         this.PORT = process.env.PORT || 4001;
@@ -177,8 +147,8 @@ class App {
             getPaht(x.Url, x.Router, routestest);
             routestest.push("");
         });
-        routestest.push(`-----------------静态-----------------`);
-        routestest.push("/react.html");
+        // routestest.push(`-----------------静态-----------------`);
+        // routestest.push("/react.html");
         this.app.get("/", (req, res) => {
             res.render("index", {
                 title: "路由列表",
@@ -251,22 +221,37 @@ exports.default = App;
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("morgan");
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+let modularList = [];
+exports.modularList = modularList;
+const users = __webpack_require__(7);
+const user = __webpack_require__(8);
+modularList.push({ Url: "/users", Router: users.RouterUse });
+modularList.push({ Url: "/user", Router: user.RouterUse });
+
 
 /***/ }),
 /* 7 */
@@ -275,23 +260,7 @@ module.exports = require("body-parser");
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-let modularList = [];
-exports.modularList = modularList;
-const users = __webpack_require__(1);
-const user = __webpack_require__(8);
-modularList.push({ Url: "/users", Router: users.RouterUse });
-modularList.push({ Url: "/user", Router: user.RouterUse });
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __webpack_require__(0);
-const users = __webpack_require__(1);
 exports.RouterUse = express_1.Router();
 // 路由列表
 let routers = [];
@@ -304,9 +273,43 @@ exports.RouterUse.get("/", (req, res) => {
         routers: routers
     });
 });
-exports.RouterUse.use("/userList/:id?", users.RouterUse);
-exports.RouterUse.use("/userList/a", users.RouterUse);
-exports.RouterUse.use("/userList", users.RouterUse);
+exports.RouterUse.get("/index", (req, res) => {
+    res.send('respond with a resource');
+});
+exports.RouterUse.get("/error", (req, res) => {
+    let err = parseInt('a111a');
+    throw "报错了";
+});
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __webpack_require__(0);
+exports.RouterUse = express_1.Router();
+// 路由列表
+let routers = [];
+exports.RouterUse.get("/", (req, res) => {
+    routers = exports.RouterUse.stack.map(x => {
+        return (x.route ? req.baseUrl + x.route.path : '这是一个中间件');
+    });
+    res.render("index", {
+        title: "路由列表 ----- " + req.baseUrl,
+        routers: routers
+    });
+});
+// RouterUse.use("/userList/:id?", users.RouterUse);
+// RouterUse.use("/userList/a", users.RouterUse);
+// RouterUse.use("/userList", users.RouterUse);
+exports.RouterUse.get("/userContext", (req, res) => {
+    res.json({
+        Name: "LENG",
+    });
+});
 exports.RouterUse.get("/index/:id", (req, res) => {
     res.json({
         title: "Express User"
