@@ -26,7 +26,7 @@ export function login(uid, pwd, Callback?) {
     return (dispatch, getState) => {
         setTimeout(function () {
             console.log("jquery",jquery);
-            jquery.post("/api/login", { uid, pwd }).then(x => {
+            jquery.post("/api/authentication/login", { uid, pwd }).then(x => {
                 Callback ? Callback() : undefined;
                 dispatch({ type: LOGIN, data: x.data })
             });

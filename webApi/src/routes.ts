@@ -1,14 +1,11 @@
 import { Router } from 'express';
 let modularList: { Url: string, Router: any }[] = [];
-import * as users from './controllers/users';
-import * as user from './controllers/user';
-import Api from './controllers/api';
+import * as users from './components/user/users';
+import * as user from './components/user/user';
+import * as login from './components/authentication/login';
 
 modularList.push({ Url: "/users", Router: users.RouterUse });
 modularList.push({ Url: "/user", Router: user.RouterUse });
-// modularList.push({ Url: "/user222", Router: user.RouterUse });
-// modularList.push({ Url: "/user333", Router: user.RouterUse });
-
-// modularList.push({ Url: "/api", Router: Api });
+modularList.push({ Url: "/authentication", Router: login.RouterUse });
 
 export { modularList };

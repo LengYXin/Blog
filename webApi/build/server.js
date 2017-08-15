@@ -249,8 +249,10 @@ let modularList = [];
 exports.modularList = modularList;
 const users = __webpack_require__(7);
 const user = __webpack_require__(8);
+const login = __webpack_require__(9);
 modularList.push({ Url: "/users", Router: users.RouterUse });
 modularList.push({ Url: "/user", Router: user.RouterUse });
+modularList.push({ Url: "/authentication", Router: login.RouterUse });
 
 
 /***/ }),
@@ -323,6 +325,56 @@ exports.RouterUse.get("/verifyCellPhone", (req, res) => {
         }
     });
 });
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __webpack_require__(0);
+const help_1 = __webpack_require__(11);
+exports.RouterUse = express_1.Router();
+// 路由列表
+let routers = [];
+exports.RouterUse.get("/", (req, res) => {
+    routers = exports.RouterUse.stack.map(x => {
+        return (x.route ? req.baseUrl + x.route.path : '这是一个中间件');
+    });
+    res.render("index", {
+        title: "路由列表 ----- " + req.baseUrl,
+        routers: routers
+    });
+});
+exports.RouterUse.post("/login", (req, res) => {
+    console.log(req.body);
+    res.json(help_1.default.ResFormatData(Object.assign({ state: true, name: "LENG" }, req.body)));
+});
+
+
+/***/ }),
+/* 10 */,
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+class default_1 {
+    /**
+     * 响应数据格式化
+     * @param data
+     */
+    static ResFormatData(data = {}, code = 0) {
+        return {
+            code,
+            data
+        };
+    }
+}
+exports.default = default_1;
 
 
 /***/ })
