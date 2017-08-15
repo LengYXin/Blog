@@ -90,7 +90,7 @@ module.exports = (evn = {}) => {
                     use: extractCSS.extract({
                         fallback: "style-loader",
                         // 生产环境 不生成map 且压缩css
-                        use: `css-loader?sourceMap=${evn.Generative}&minimize=${!evn.Generative}`
+                        use: `css-loader?sourceMap=${!evn.Generative}&minimize=${evn.Generative}`
                     })
                 },
                 {
