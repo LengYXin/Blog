@@ -107,7 +107,8 @@ export default class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
         // app.use(cookieParser());
-        // this.app.use(express.static(path.join(path.dirname(__dirname), 'public')));
+        // console.log(express.static(path.join(path.dirname(path.dirname(__dirname)),"webAdmin","build")));
+        this.app.use("/react", express.static(path.join(path.dirname(path.dirname(__dirname)), "webAdmin", "build")));
         // this.app.use("img", express.static(path.join(path.dirname(__dirname), 'public', 'images')));
         // this.app.use(express.static(path.join(path.dirname(__dirname), 'react')));
 

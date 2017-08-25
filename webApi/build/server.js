@@ -194,7 +194,8 @@ class App {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
         // app.use(cookieParser());
-        // this.app.use(express.static(path.join(path.dirname(__dirname), 'public')));
+        // console.log(express.static(path.join(path.dirname(path.dirname(__dirname)),"webAdmin","build")));
+        this.app.use("/react", express.static(path.join(path.dirname(path.dirname(__dirname)), "webAdmin", "build")));
         // this.app.use("img", express.static(path.join(path.dirname(__dirname), 'public', 'images')));
         // this.app.use(express.static(path.join(path.dirname(__dirname), 'react')));
         this.app.use((req, res, next) => {
@@ -335,7 +336,7 @@ exports.RouterUse.get("/verifyCellPhone", (req, res) => {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __webpack_require__(0);
-const help_1 = __webpack_require__(11);
+const help_1 = __webpack_require__(10);
 exports.RouterUse = express_1.Router();
 // 路由列表
 let routers = [];
@@ -352,11 +353,15 @@ exports.RouterUse.post("/login", (req, res) => {
     console.log(req.body);
     res.json(help_1.default.ResFormatData(Object.assign({ state: true, name: "LENG" }, req.body)));
 });
+exports.RouterUse.get("/userContext", (req, res) => {
+    res.json({
+        Name: "LENG",
+    });
+});
 
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

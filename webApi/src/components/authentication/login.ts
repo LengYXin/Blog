@@ -22,3 +22,8 @@ RouterUse.post("/login", (req: Request, res: Response) => {
     }));
 });
 
+RouterUse.get("/userContext", (req: Request, res: Response) => {
+    res.json({
+      Name: "LENG",
+    });
+  });
