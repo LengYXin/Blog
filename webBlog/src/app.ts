@@ -18,3 +18,4 @@ new Vue({
   // `
   //   components: { App }
 })
+import("./router/index").then(x => { console.log(x); })
