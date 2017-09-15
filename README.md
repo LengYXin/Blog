@@ -1,5 +1,6 @@
 
 # Blog  试试从0开始写一个博客。
+![image](https://github.com/LengYXin/Blog/blob/master/docs/img/api.png)
 
 ## 目录结构
 ```
