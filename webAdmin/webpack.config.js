@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
-// const data = require('./data');
+const data = require('./data');
 const extractSASS = new ExtractTextPlugin('styles-one.css');
 const extractCSS = new ExtractTextPlugin('styles-two.css');
 module.exports = (evn = {}) => {
@@ -51,7 +51,7 @@ module.exports = (evn = {}) => {
         },
         output: {
             path: __dirname + '/build',
-            publicPath: '/',
+            // publicPath: '/',
             filename: '[name].js',
             chunkFilename: '[id].chunk.js'
         },
@@ -59,7 +59,7 @@ module.exports = (evn = {}) => {
         devServer: {
             // contentBase: "www", //本地服务器所加载的页面所在的目录
             inline: true, //检测文件变化，实时构建并刷新浏览器
-            port: "4002",
+            port: "3002",
             // https: true,
             proxy: {
                 '/api': {
@@ -73,7 +73,7 @@ module.exports = (evn = {}) => {
             //404 页面返回 index.html 
             historyApiFallback: true,
             setup(app) { //模拟数据
-                // data(app);
+                data(app);
             }
         },
         // 开发环境 生成 map 文件  
@@ -93,6 +93,16 @@ module.exports = (evn = {}) => {
                         use: `css-loader?sourceMap=${!evn.Generative}&minimize=${evn.Generative}`
                     })
                 },
+                // {
+                //     // 这个只处理 bootstrap 等源文件 如果需要项目中使用可以在配置一个
+                //     test: /\.scss$/,
+                //     include: path.resolve(__dirname, "assets"), //只包含 assets目录
+                //     use: extractSASS.extract({
+                //         fallback: 'style-loader',
+                //         // 生产环境 不生成map 且压缩css
+                //         use: [`css-loader?sourceMap=${evn.Development}&minimize=${!evn.Development}`, 'sass-loader']
+                //     })
+                // },
                 {
                     test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
                     loader: 'url-loader?limit=50000&name=[path][name].[ext]'

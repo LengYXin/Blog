@@ -1,0 +1,10 @@
+.table-row-buttons{
+    margin-bottom: 16px;
+}
+.table-row-buttons button{
+    margin-right: 8px;
+}
+.example-input .ant-input {
+    width: 200px;
+    margin: 0 8px 8px 0;
+  }
