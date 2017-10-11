@@ -1,4 +1,5 @@
 import * as React from 'react'
+import createReactClass from "create-react-class"
 import { BrowserRouter, Link, Route, Redirect } from 'react-router-dom'
 import { renderRoutes, RouteConfig, RouteConfigComponentProps } from 'react-router-config'
 import { Spin } from 'antd';
@@ -15,7 +16,7 @@ export default class RootRoutes extends React.Component<any, any> {
     )
     // 创建过渡动画
     createCSSTransition = (Component: any, classNames = "fade") => {
-        return React.createClass({
+        return createReactClass({
             getInitialState: function () {
                 return {
                     CSSTransitionShow: false
