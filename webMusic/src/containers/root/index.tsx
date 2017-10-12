@@ -4,32 +4,43 @@ import { renderRoutes, RouteConfig, RouteConfigComponentProps } from 'react-rout
 import { observer, inject } from 'mobx-react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
+import HeaderR from "./header";
+import FooterR from "./footer";
+import Body from "./body";
+import Menu from "./menu";
 
+import { Layout } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
 import './style.css'
-
 /**
  * RootApp
  */
-@inject('UserContextStore')
+// @inject('UserContextStore')
+// @observer
 export class RootApp extends React.Component<any, any>{
-    state = {
-        // CSSTransitionShow: false,
-        collapsed: false,
-        current: this.props.location.pathname,
-        openKeys: ['0'],
-    };
     componentDidMount() {
-        // this.setState({ CSSTransitionShow: true });
     }
-
-
     render() {
         return (
-            <div>
-                <header>头</header>
-                {renderRoutes(this.props.route.routes)}
-                <footer>尾</footer>
-            </div>
+            // <div className="root">
+            //     <Header  />
+            //     <Body  {...this.props} />
+            //     <Footer />
+            // </div>
+            <Layout style={{ height: '100vh' }}>
+                <Header>
+                    <HeaderR />
+                </Header>
+                <Layout>
+                    <Sider style={{ overflow: 'auto', }}>
+                        <Menu />
+                    </Sider>
+                    <Content>
+                        <Body  {...this.props} />
+                    </Content>
+                </Layout>
+                <FooterR />
+            </Layout>
         );
     }
 }

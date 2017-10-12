@@ -1,13 +1,15 @@
 import * as React from 'react'
-// import createReactClass from "create-react-class"
+import createReactClass from "create-react-class"
 import { BrowserRouter, Link, Route, Redirect } from 'react-router-dom'
 import { renderRoutes, RouteConfig, RouteConfigComponentProps } from 'react-router-config'
 // import { Spin } from 'antd';
 import { observer, inject } from 'mobx-react';
-import CSSTransition from 'react-transition-group/CSSTransition';
+// import CSSTransition from 'react-transition-group/CSSTransition';
+import QueueAnim from 'rc-queue-anim';
 
 import * as containers from "./containers"
 @inject('UserContextStore')
+@observer
 export default class RootRoutes extends React.Component<any, any> {
     NoMatch = ({ location }) => (
         <div>
@@ -16,23 +18,32 @@ export default class RootRoutes extends React.Component<any, any> {
     )
     // 创建过渡动画
     createCSSTransition = (Component: any, classNames = "fade") => {
-        return Component;  // createReactClass({
-        //     getInitialState: function () {
-        //         return {
-        //             CSSTransitionShow: false
-        //         };
-        //     },
-        //     componentDidMount: function () {
-        //         this.setState({ CSSTransitionShow: true });
-        //     },
-        //     render: function () {
-        //         return (
-        //             <CSSTransition in={this.state.CSSTransitionShow} timeout={500} classNames={classNames}>
-        //                 <Component {...this.props} />
-        //             </CSSTransition>
-        //         );
-        //     },
-        // });
+        // return Component;  
+        return createReactClass({
+            getInitialState: function () {
+                return {
+                    CSSTransitionShow: false
+                };
+            },
+            componentDidMount: function () {
+                this.setState({ CSSTransitionShow: true });
+            },
+            render: function () {
+                // return (
+                //     <CSSTransition in={this.state.CSSTransitionShow} timeout={500} classNames={classNames}>
+                //         <Component {...this.props} />
+                //     </CSSTransition>
+                // );
+                return (
+                    <QueueAnim type="scale" delay={100} animConfig={[
+                        { opacity: [0.9, 0], },
+                        { opacity: [0.9, 0], }
+                    ]} >
+                        <Component key="1" {...this.props} />
+                    </QueueAnim >
+                );
+            },
+        });
     }
     routes: RouteConfig[] = [
         {
@@ -41,7 +52,7 @@ export default class RootRoutes extends React.Component<any, any> {
                 {
                     path: "/",
                     exact: true,
-                    component: this.createCSSTransition(containers.HomeComponent),
+                    component: this.createCSSTransition(containers.DiscoverMusicComponent),
                 },
                 // 没有匹配的路由
                 {

@@ -4,6 +4,7 @@ import { BrowserRouter, Link, Route, Redirect } from 'react-router-dom'
 import { observer, inject } from 'mobx-react';
 import './style.css'
 @inject('UserContextStore', 'recommendStore')
+@observer
 export class HomeComponent extends React.Component<any, any> {
     render() {
         console.log(this.props);

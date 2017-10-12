@@ -15,18 +15,18 @@ class ObservableStore {
     constructor() {
         // 模拟一下网速慢
         // setTimeout(() => {
-        //     this.getUserContext();
+        // this.onLogin({ phone: "18611752863", password: "leng5201314" });
         // }, 1000);
         // autorun(() => console.log("-----autorun------", this.State));
     }
-    onLogin() {
-        return Http.get("login/cellphone?phone=18611752863&password=leng5201314").then(x => {
+    onLogin(params: { phone: string, password: string }) {
+        return Http.get(`login/cellphone?phone=${params.phone}&password=${params.password}`).then(x => {
             // 模拟一下网速慢
-            setTimeout(() => {
-                // console.log("login", x);
-                this.UserContext = x;
-                this.State = x.state;
-            }, 1000);
+            // setTimeout(() => {
+            console.log("login", x);
+            this.UserContext = x;
+            // this.State = x.state;
+            // }, 1000);
         }).catch(e => {
         })
     }

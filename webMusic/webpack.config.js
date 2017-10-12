@@ -29,10 +29,16 @@ module.exports = (evn = {}) => {
         new HtmlWebpackPlugin({
             template: 'src/index.html'
         }),
-        // new CopyWebpackPlugin([{
-        //     // from: 'node_modules/babel-polyfill/dist/polyfill.min.js',
-        //     // to: 'assets/js/polyfill.min.js'
-        // }]),
+        new CopyWebpackPlugin([
+            //     {
+            //     from: 'node_modules/babel-polyfill/dist/polyfill.min.js',
+            //     to: 'assets/js/polyfill.min.js'
+            // }
+            {
+                from: 'src/assets',
+                to: 'assets'
+            }
+        ]),
     ];
     // 生产环境添加压缩插件
     evn.Generative ? plugins.push(new UglifyJSPlugin({
