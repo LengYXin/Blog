@@ -36,8 +36,8 @@ export default class RootRoutes extends React.Component<any, any> {
                 // );
                 return (
                     <QueueAnim type="scale" delay={100} animConfig={[
-                        { opacity: [0.9, 0], },
-                        { opacity: [0.9, 0], }
+                        { opacity: [0.95, 0], },
+                        { opacity: [0.95, 0], }
                     ]} >
                         <Component key="1" {...this.props} />
                     </QueueAnim >
@@ -53,6 +53,10 @@ export default class RootRoutes extends React.Component<any, any> {
                     path: "/",
                     exact: true,
                     component: this.createCSSTransition(containers.DiscoverMusicComponent),
+                },
+                {
+                    path: "/ssd/:id",
+                    component: this.createCSSTransition(containers.songSheetDetailsComponent),
                 },
                 // 没有匹配的路由
                 {

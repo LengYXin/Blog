@@ -2,10 +2,10 @@
  * 推荐
  */
 import { observable, computed, autorun } from "mobx"
-import * as Http from "../utils/http"
+import  Http from "../utils/http"
 class ObservableStore {
     @observable Store = {};
-    @observable resource = JSON.parse(window.localStorage.getItem("getResource"));
+    @observable resource = JSON.parse(window.sessionStorage.getItem("getResource"));
     personalized
     constructor() {
         this.getResource();
@@ -14,7 +14,7 @@ class ObservableStore {
     async getResource() {
         if (!this.resource) {
             this.resource = await Http.get(`recommend/resource`);
-            window.localStorage.setItem("getResource", JSON.stringify(this.resource));
+            window.sessionStorage.setItem("getResource", JSON.stringify(this.resource));
         }
         return this.resource;
     }

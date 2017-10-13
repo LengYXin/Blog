@@ -1,5 +1,5 @@
 
 export * from "./personality";
-export * from "./highquality";
+export * from "./details";
 export * from "./songSheet";
 import './style.css'

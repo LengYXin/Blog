@@ -5,8 +5,8 @@ import '../node_modules/antd/dist/antd.css'
 // import { RootApp } from './containers';
 import UserContextStore from './store/userContext';
 import recommendStore from './store/recommend';
-import highquality from './store/highquality';
 import songSheet from './store/songSheet';
+import music from './store/music';
 
 import Routers from "./routers"
 import "./style.css"
@@ -14,9 +14,8 @@ render(
   <Provider 
   UserContextStore={UserContextStore} 
   recommendStore={recommendStore}
-  highqualityStore={highquality}
   songSheetStore={songSheet}
-  
+  musictStore={music}
   >
     <Routers />
   </Provider>,

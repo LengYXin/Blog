@@ -5,3 +5,7 @@
 ::-webkit-scrollbar-thumb{height:50px;background:rgb(121, 121, 121);   cursor:pointer;}
 
 ::-webkit-scrollbar-thumb:hover{background:rgb(211, 211, 211) ; cursor:pointer}
+
+.text-align-center{
+    text-align: center
+}
