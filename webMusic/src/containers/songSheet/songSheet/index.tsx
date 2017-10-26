@@ -11,7 +11,7 @@ const gridStyle = {
 };
 @inject('songSheetStore')
 @observer
-export  class SongSheetComponent extends React.Component<any, any> {
+export class SongSheetComponent extends React.Component<any, any> {
     tagsFromServer = ["华语", "流行", "摇滚", "民谣", "电子", "轻音乐", "影视原声", "ACG", "怀旧", "治愈"];
     state = {
         selectedTags: [],
@@ -46,22 +46,24 @@ export  class SongSheetComponent extends React.Component<any, any> {
                         ))}
                     </div>
                     <Card>
-                    <Card.Grid style={gridStyle} key={111}>
-                                <div className="custom-image">
-                                    <img alt="example" width="100%" src={"/assets/img/jpgd.png?param=180y180"} />
-                                </div>
-                                <div className="custom-card">
-                                    <h3>精品歌单倾心推荐，给最懂音乐的你</h3>
-                                </div>
-                            </Card.Grid>
+                        <Card.Grid style={gridStyle} key={111}>
+                            <div className="custom-image">
+                                <img alt="example" width="100%" src={"/assets/img/jpgd.png?param=180y180"} />
+                            </div>
+                            <div className="custom-card">
+                                <h3>精品歌单倾心推荐，给最懂音乐的你</h3>
+                            </div>
+                        </Card.Grid>
                         {this.props.songSheetStore.playlist.playlists.map(x => {
                             return <Card.Grid style={gridStyle} key={x.id}>
-                                <div className="custom-image">
-                                    <img alt="example" width="100%" src={x.coverImgUrl + "?param=180y180"} />
-                                </div>
-                                <div className="custom-card">
-                                    <h3> {x.name}</h3>
-                                </div>
+                                <Link to={`ssd/${x.id}`}>
+                                    <div className="custom-image">
+                                        <img alt="example" width="100%" src={x.coverImgUrl + "?param=180y180"} />
+                                    </div>
+                                    <div className="custom-card">
+                                        <h3> {x.name}</h3>
+                                    </div>
+                                </Link>
                             </Card.Grid>
                         })}
                     </Card>
