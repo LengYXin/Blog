@@ -7,6 +7,7 @@
         "start": "concurrently -k -p \"[{name}]\" -n \"Admin,Api\"  \"npm run start:admin\" \"npm run start:api\"",
         "start:admin": "cd webAdmin && npm start",
         "start:api": "cd webApi && npm start",
+        "start:music":"concurrently -k -p \"[{name}]\" -n \"Api,Music\"  \"cd NeteaseCloudMusicApi && node app\" \"cd webMusic && npm start\"",
         "init-dev": "npm run init-dev-g && npm run init-api && npm run init-admin",
         "init-dev-g": "npm i -g -d webpack webpack-dev-server concurrently typescript nodemon",
         "init-api": "cd webApi && npm i -d",

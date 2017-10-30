@@ -15,7 +15,7 @@ class ObservableStore {
 
 
     constructor() {
-        console.log(Help);
+        // console.log(Help);
         this.getPlaylist();
     }
     // 获取歌单
@@ -43,7 +43,7 @@ class ObservableStore {
     }
 }
 const Store = new ObservableStore();
-console.log("Store----highquality", Store);
+console.log("Store----songSheet", Store);
 export default Store;
 
 

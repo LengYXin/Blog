@@ -8,7 +8,9 @@ import { Table, Button } from 'antd';
 import Help from "../../../utils/help"
 
 import './style.css'
-
+// 
+@inject('musictStore')
+@observer
 export default class extends React.Component<any, any> {
     columns = [{
         title: '',
@@ -77,11 +79,14 @@ export default class extends React.Component<any, any> {
         },
         width: '10%',
     }];
-    onChange() { }
+    onRowClick(t) { 
+        // console.log(t);
+        this.props.musictStore.addPlayList([t]);
+    }
     render() {
         const data = this.props.tracks && this.props.tracks.map(x => x);
         return (
-            <Table rowKey="id" rowClassName={() => "s-s-songlist"} pagination={false} columns={this.columns} dataSource={data} onChange={this.onChange.bind(this)} />
+            <Table rowKey="id" rowClassName={() => "s-s-songlist"} pagination={false} columns={this.columns} dataSource={data} onRowClick={this.onRowClick.bind(this)} />
         )
     }
 }

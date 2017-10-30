@@ -49,9 +49,13 @@ export class songSheetDetailsComponent extends React.Component<any, any> {
 /**
  * 介绍部分
  */
-@inject('songSheetStore')
+@inject('songSheetStore', 'musictStore')
 @observer
 class Introduce extends React.Component<any, any> {
+    playAll() {
+        console.log( this.props.musictStore);
+        this.props.musictStore.addPlayList(this.props.songSheetStore.details.playlist.tracks, true);
+    }
     render() {
         const detalis = this.props.songSheetStore.details.playlist || {};
         const creator = detalis.creator || {};
@@ -62,7 +66,7 @@ class Introduce extends React.Component<any, any> {
             </div>
             <div> <Avatar src={creator.avatarUrl} /><span>{creator.nickname}</span> <span>{Help.DateFormat(detalis.createTime, "yyyy-MM-dd")}创建</span></div>
             <div>
-                <Button type="dashed"><Icon type="play-circle-o" />播放全部</Button>
+                <Button type="dashed" onClick={this.playAll.bind(this)}><Icon type="play-circle-o" />播放全部</Button>
                 <Button type="dashed"><Icon type="plus" /></Button>
                 <Button type="dashed"><Icon type="folder-add" />收藏({detalis.subscribedCount})</Button>
                 <Button type="dashed"><Icon type="export" />分享({detalis.shareCount})</Button>

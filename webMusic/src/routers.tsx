@@ -58,6 +58,10 @@ export default class RootRoutes extends React.Component<any, any> {
                     path: "/ssd/:id",
                     component: this.createCSSTransition(containers.songSheetDetailsComponent),
                 },
+                // {
+                //     path: "/music/:id",
+                //     component: this.createCSSTransition(containers.MusicPlayComponent),
+                // },
                 // 没有匹配的路由
                 {
                     component: this.createCSSTransition(this.NoMatch)

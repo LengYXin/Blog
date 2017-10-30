@@ -12,7 +12,6 @@ import Menu from "./menu";
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import './style.css'
-import { MusicPlayComponent } from "../music"
 /**
  * RootApp
  */
@@ -39,7 +38,6 @@ export class RootApp extends React.Component<any, any>{
                     <Content>
                         <Body  {...this.props} />
                     </Content>
-                    <MusicPlayComponent />
                 </Layout>
                 <FooterR />
             </Layout>
